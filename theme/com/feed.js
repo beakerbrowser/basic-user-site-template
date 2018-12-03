@@ -7,7 +7,7 @@ class Feed extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/themes/basic/vendor/bulma.min.css">
+      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
       <style>
         x-feed-item {
           display: block;
@@ -52,7 +52,7 @@ class FeedItem extends LitElement {
 
   render () {
     return html`
-      <link rel="stylesheet" href="/themes/basic/vendor/bulma.min.css">
+      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
       <style>
         article {
         }

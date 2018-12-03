@@ -1,5 +1,5 @@
 import { LitElement, html } from '../vendor/lit-element.js';
-import { Feed } from '/assets/js/feed.js'
+import { Feed } from '../lib/feed.js'
 
 import '../com/feed.js'
 import '../com/following.js'
@@ -33,7 +33,7 @@ class Homepage extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/themes/basic/vendor/bulma.min.css">
+      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
       <x-feed .siteInfo=${this.siteInfo} .posts=${this.posts}></x-feed>
     `
   }

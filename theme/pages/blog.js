@@ -21,7 +21,7 @@ class Blog extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/themes/basic/vendor/bulma.min.css">
+      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
       <style>
         .post {
           margin-bottom: 1rem;

@@ -10,7 +10,7 @@ class Hero extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/themes/basic/vendor/bulma.min.css">
+      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
       <h1 class="title is-4">${this.displayName}</h1>
       ${this.bio ? html`<h2 class="subtitle is-6">${this.bio}</h2>` : ''}
     `

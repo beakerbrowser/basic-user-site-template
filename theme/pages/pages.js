@@ -27,7 +27,7 @@ class Pages extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/themes/basic/vendor/bulma.min.css">
+      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
       <style>
         .card.tile.is-child {
           margin: 0.5rem !important;

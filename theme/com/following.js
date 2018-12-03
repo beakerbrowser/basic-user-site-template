@@ -7,8 +7,8 @@ class Following extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/themes/basic/vendor/bulma.min.css">
-      <link rel="stylesheet" href="/themes/basic/vendor/font-awesome.min.css">
+      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
+      <link rel="stylesheet" href="/theme/vendor/font-awesome.min.css">
       <style>
         .row {
           display: flex;

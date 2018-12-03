@@ -1,5 +1,5 @@
 import { LitElement, html } from './vendor/lit-element.js'
-import { SiteInfo } from '/assets/js/site-info.js'
+import { SiteInfo } from './lib/site-info.js'
 
 import './com/nav.js'
 import './com/avatar.js'
@@ -36,7 +36,7 @@ class Theme extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/themes/basic/vendor/bulma.min.css">
+      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
       <style>
         .banner {
           object-fit: cover;

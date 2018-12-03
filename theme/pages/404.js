@@ -1,9 +1,9 @@
-import { LitElement, html } from '../vendor/lit-element.js';
+import { LitElement, html } from '../vendor/lit-element.js'
 
 class FourOhFour extends LitElement {
   render() {
     return html`
-      <link rel="stylesheet" href="/themes/basic/vendor/bulma.min.css">
+      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
       <style>
         .hero.is-fullheight {
           min-height: calc(100vh - 52px);
