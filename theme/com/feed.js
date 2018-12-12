@@ -31,8 +31,8 @@ class Feed extends LitElement {
             thumbUrl=${this.siteInfo.thumbUrl}
             domain=${this.siteInfo.domain}
             filename=${post.filename}
-            text=${post.text}
-            date=${post.date}
+            content=${post.content}
+            createdAt=${post.createdAt}
           ></x-feed-item>
         `)}
       </div>
@@ -48,8 +48,8 @@ class FeedItem extends LitElement {
       thumbUrl: String,
       domain: String,
       filename: String,
-      text: String,
-      date: String
+      content: String,
+      createdAt: String
     }
   }
 
@@ -75,9 +75,9 @@ class FeedItem extends LitElement {
                 <small>@${shortenDomain(this.domain)}</small>
               </a>
               &middot;
-              <a class="has-text-grey" href=${this.url}><small>${this.date}</small></a>
+              <a class="has-text-grey" href=${this.url}><small>${(new Date(this.createdAt)).toLocaleString()}</small></a>
               <br>
-              ${this.text}
+              ${this.content}
             </p>
           </div>
         </div>

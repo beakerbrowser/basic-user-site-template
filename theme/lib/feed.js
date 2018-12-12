@@ -1,4 +1,4 @@
-const FEED_DIR = '/data/feed'
+const FEED_DIR = '/data/posts'
 const site = new DatArchive(window.location)
 
 export class Feed {
