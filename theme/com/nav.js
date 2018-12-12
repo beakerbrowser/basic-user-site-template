@@ -12,10 +12,12 @@ class Nav extends LitElement {
     this.items = []
   }
 
+  createRenderRoot() {
+    return this // dont use the shadow dom
+  }
+
   render() {
     return html`
-      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
-      <link rel="stylesheet" href="/theme/vendor/font-awesome.min.css">
       <style>
         .fas {
           margin-right: 0.4rem;
@@ -23,7 +25,7 @@ class Nav extends LitElement {
       </style>
       <div class="tabs is-medium">
         <ul>
-          ${this.items.map(item => html`
+          ${this.items.filter(hasLabel).map(item => html`
             <li class="${this.isActive(item.href) ? 'is-active' : ''}">
               <a href=${item.href} title=${item.label}>
                 ${''/*<i class=${this.getIcon(item.label)}></i>*/} ${item.label}
@@ -50,3 +52,7 @@ class Nav extends LitElement {
 }
 
 customElements.define('x-nav', Nav)
+
+function hasLabel (item) {
+  return !!item.label
+}

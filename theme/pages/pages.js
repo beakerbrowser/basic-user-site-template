@@ -1,4 +1,5 @@
 import { LitElement, html } from '../vendor/lit-element.js'
+import { Pages as LibPages } from '../lib/pages.js'
 
 class Pages extends LitElement {
   static get properties () {
@@ -13,64 +14,63 @@ class Pages extends LitElement {
     this.load()
   }
 
+  createRenderRoot() {
+    return this // dont use the shadow dom
+  }
+
   async load () {
-    var site = new DatArchive(window.location)
-    this.pages = [
-      {href: '#', title: 'I <3 Cats', description: 'A site dedicated to how much I <3 cats.', img: 'https://bulma.io/images/placeholders/1280x960.png'},
-      {href: '#', title: 'I <3 Cats', description: 'A site dedicated to how much I <3 cats.', img: 'https://bulma.io/images/placeholders/1280x960.png'},
-      {href: '#', title: 'I <3 Cats', description: 'A site dedicated to how much I <3 cats.', img: 'https://bulma.io/images/placeholders/1280x960.png'},
-      {href: '#', title: 'I <3 Cats', description: 'A site dedicated to how much I <3 cats.', img: 'https://bulma.io/images/placeholders/1280x960.png'},
-      {href: '#', title: 'I <3 Cats', description: 'A site dedicated to how much I <3 cats.', img: 'https://bulma.io/images/placeholders/1280x960.png'}
-    ]
+    this.pages = await LibPages.list({reverse: true})
     this.requestUpdate()
   }
 
   render() {
+    var pages = this.pages
+    if (this.siteInfo && this.siteInfo.isOwner) {
+      pages = pages.concat([{
+        type: 'new',
+        url: '/pages/_new',
+        title: '+ New page',
+        description: 'Create a new Markdown or HTML page'
+      }])
+    }
     return html`
-      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
       <style>
-        .card.tile.is-child {
-          margin: 0.5rem !important;
+        article {
+          margin-bottom: 1rem;
+          padding: 0 1rem;
         }
-        a.card.tile.is-child:hover {
-          outline: 1px solid hsl(204, 86%, 53%);
+        article.new {
+          color: gray;
+        }
+        article.new * {
+          color: inherit !important;
+        }
+        article.new a:hover {
+          color: #333 !important;
         }
       </style>
-      ${this.pageRows.map(pageRow => html`
-        <div class="tile is-ancestor">
-          ${pageRow.map(page => page ? html`
-            <a class="card tile is-child" href="${page.href}">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="${page.img}">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">${page.title}</p>
-                  </div>
-                </div>
-                <div class="content">${page.description}</div>
-              </div>
-            </a>
-          ` : html`<div class="card tile is-child"></div>`)}
-        </div>
+      ${pages.filter(Boolean).map(page => html`
+        <article class="post ${page.type}">
+          <h4 class="title is-5"><a href="${removeExt(page.url)}">${page.title}</a></h4>
+          <h6 class="subtitle is-6">${toDate(page.createdAt)}</h6>
+        </article>
       `)}
     `
-  }
-
-  get pageRows () {
-    var pageRows = []
-    for (let i = 0; i < this.pages.length; i += 3) {
-      pageRows.push([
-        this.pages[i + 0],
-        this.pages[i + 1],
-        this.pages[i + 2]
-      ])
-    }
-    return pageRows
   }
 }
 
 customElements.define('x-pages', Pages)
+
+function toDate (d) {
+  if (!d) return ''
+  d = new Date(d)
+  var mo = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  return `${mo[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`
+}
+
+function removeExt (url) {
+  if (typeof url === 'string' && url.endsWith('.json')) {
+    return url.slice(0, -5)
+  }
+  return url
+}

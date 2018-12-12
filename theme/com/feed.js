@@ -5,16 +5,19 @@ class Feed extends LitElement {
     return {siteInfo: Object, posts: Array}
   }
 
+  createRenderRoot() {
+    return this // dont use the shadow dom
+  }
+
   render() {
     return html`
-      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
       <style>
         x-feed-item {
           display: block;
           box-sizing: border-box;
           max-width: 800px;
           padding: 2rem 2.5rem 2rem 1rem;
-          border-bottom: 1px solid #ddd;
+          border-bottom: 1px solid #eaeaea;
         }
         x-feed-item:first-child {
           padding-top: 0;
@@ -50,17 +53,16 @@ class FeedItem extends LitElement {
     }
   }
 
+  createRenderRoot() {
+    return this // dont use the shadow dom
+  }
+
   render () {
     return html`
-      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
-      <style>
-        article {
-        }
-      </style>
       <article class="media">
         <figure class="media-left">
           <p class="image is-64x64">
-            <img class="is-rounded" src=${this.thumbUrl}>
+            <img class="is-rounded" src=${this.thumbUrl} style="width: 64px">
           </p>
         </figure>
         <div class="media-content">

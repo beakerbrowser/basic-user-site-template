@@ -12,7 +12,7 @@ class Avatar extends LitElement {
       <style>
         img {
           max-width: 100%;
-          border-radius: 10px;
+          border-radius: 50%;
           border: 5px solid #fff;
         }
       </style>

@@ -13,6 +13,10 @@ class Blog extends LitElement {
     this.load()
   }
 
+  createRenderRoot() {
+    return this // dont use the shadow dom
+  }
+
   async load () {
     var site = new DatArchive(window.location)
     this.posts = JSON.parse(await site.readFile('/data/blog.json'))
@@ -21,7 +25,6 @@ class Blog extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/theme/vendor/bulma.min.css">
       <style>
         .post {
           margin-bottom: 1rem;
