@@ -76,6 +76,8 @@ class NewPage extends LitElement {
     // post
     var createdAt = (new Date()).toISOString()
     var site = new DatArchive(window.location)
+    await site.mkdir('/data').catch(err => undefined)
+    await site.mkdir('/data/pages').catch(err => undefined)
     await site.writeFile(`/data/pages/${createdAt}.json`, JSON.stringify({
       type: 'unwalled.garden/markdown-page',
       title,
